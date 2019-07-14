@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useEventListener } from "../../lib/hooks";
 
 const Container = styled.div`
-  max-width: ${props => props.theme.maxWidth}px;
+  max-width: ${props => props.theme.maxWidth / 2}px;
   border: solid black 1px;
   background: whitesmoke;
   padding: 12px 24px;
