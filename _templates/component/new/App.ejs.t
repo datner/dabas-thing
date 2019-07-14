@@ -10,7 +10,7 @@ export const <%= name %> = () => (
   </div>
 )
 
-export default App;
+export default <%= name %>;
 
 
 
