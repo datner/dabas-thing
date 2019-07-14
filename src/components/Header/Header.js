@@ -18,11 +18,32 @@ const Container = styled.div`
 
 const Header = () => {
   const [round, setRound] = useState(1);
+
+  const delta = 500;
+  let nextInput = false;
+  let lastKeypressTime = 0;
+
   useEventListener("keypress", e => {
-    if (e.key === "Enter") setRound(round + 1);
+    if (e.ctrlKey && e.key === "Enter") setRound(round + 1);
+    if (nextInput) {
+      if (e.key > 0) setRound(+e.key);
+      nextInput = false;
+    }
+    if (e.key === "z") {
+      let thisKeypressTime = new Date();
+      console.log(thisKeypressTime - lastKeypressTime);
+      if (thisKeypressTime - lastKeypressTime <= delta) {
+        nextInput = true;
+        // optional - if we'd rather not detect a triple-press
+        // as a second double-press, reset the timestamp
+        thisKeypressTime = 0;
+      }
+      lastKeypressTime = thisKeypressTime;
+    }
   });
+  
   return (
-    <Container onClick={() => setRound(round + 1)}>
+    <Container>
       <h1>Round {round}</h1>
     </Container>
   );
