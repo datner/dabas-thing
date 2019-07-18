@@ -33,3 +33,23 @@ export function useEventListener(eventName, handler, element = window) {
     [eventName, element] // Re-run if eventName or element changes
   );
 }
+
+export function useInterval(handler, delay = 1000) {
+  const savedHandler = useRef();
+
+  // Remember the latest handler.
+  useEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedHandler.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
