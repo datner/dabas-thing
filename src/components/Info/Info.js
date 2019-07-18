@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Player from "./Player";
+import Timer from './Timer';
 
 const Container = styled.div`
   margin-top: 24px;
@@ -9,18 +10,13 @@ const Container = styled.div`
   max-width: ${props => props.theme.maxWidth}px;
   display: flex;
   justify-content: space-around;
-`;
-
-const Box = styled.div`
-  background: ${props => props.color};
-  height: 100px;
-  width: 100px;
+  align-items: center;
 `;
 
 export const Info = () => (
   <Container>
     <Player />
-    <Box color="yellow" />
+    <Timer />
     <Player />
   </Container>
 );
