@@ -30,7 +30,7 @@ const Timer = () => {
   });
 
   useEventListener("keypress", e => {
-    if (e.ctrlKey && e.key === "q") {
+    if (e.ctrlKey && e.key === ";") {
         setShow(true)
         setPop(true)
         setTimer(25)
