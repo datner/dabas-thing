@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useInterval, useEventListener } from "../../lib/hooks";
+import buzzer from "../../static/sound/buzzer.mp3";
 
 const Container = styled.div`
-  opacity: ${props => props.show? 1 : 0};
+  opacity: ${props => (props.show ? 1 : 0)};
   height: 100px;
   width: 100px;
-  background: red;
+  background: ${props => props.done ? "red" : "green"};
   font-family: "7SEG";
   font-size: 3rem;
   text-align: center;
@@ -19,25 +20,26 @@ const Container = styled.div`
 
 const Timer = () => {
   const [timer, setTimer] = useState(0);
-  const [pop, setPop] = useState(false)
-  const [show, setShow] = useState(false)
+  const [pop, setPop] = useState(true);
+  const [show, setShow] = useState(false);
+  const sound = new Audio(buzzer);
   useInterval(() => {
     if (timer > 0) setTimer(timer - 1);
-    else if (pop) {
-        setPop(false)
-        alert("Times up!");
+    else if (!pop) {
+      setPop(true)
+      sound.play();
     }
   });
 
   useEventListener("keypress", e => {
     if (e.key === ";") {
-        setShow(true)
-        setPop(true)
-        setTimer(25)
+      setShow(true);
+      setPop(false);
+      setTimer(25);
     }
   });
   return (
-    <Container show={show}>
+    <Container done={pop} show={show}>
       <span>{timer}</span>
     </Container>
   );
