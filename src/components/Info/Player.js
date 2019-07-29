@@ -5,12 +5,16 @@ import arfi_bigdicc from "../../static/image/arfi_bigdicc.PNG";
 import biggie_d from "../../static/image/biggie_d.jpg";
 import israeli_squared from "../../static/image/israeli_squared.jpg";
 import the_zionist from "../../static/image/the_zionist.png";
+import the_librarian from "../../static/image/the_librarian.jpg";
+import johnny_depp from "../../static/image/johnny_depp.jpg";
 
 const players = {
   arfi_bigdicc,
   biggie_d,
   israeli_squared,
-  the_zionist
+  the_zionist,
+  johnny_depp,
+  the_librarian
 };
 
 const Container = styled.div`
